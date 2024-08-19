@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProcessKiller.UiElements
+namespace Overlays
 {
     public partial class OverlayForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace ProcessKiller.UiElements
+﻿namespace Overlays
 {
     partial class OverlayForm
     {
