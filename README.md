@@ -35,9 +35,11 @@ Here's a quick example of how to use the `OverlayForm`:
 ```csharp
 public void ShowOverlay(Form mainForm)
 {
-    var overlay = new OverlayForm(mainForm);
+    var backOpacity = .5f;
+    var overlay = new OverlayForm(mainForm, backOpacity);
     overlay.Show();
-
+    // Set text
+    overlay.SetText("Operating...");
     // Simulate some work
     Task.Delay(5000).ContinueWith(_ => overlay.Close());
 }
