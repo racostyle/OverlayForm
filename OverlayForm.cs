@@ -10,12 +10,12 @@ namespace Overlays
     {
         private bool isActive;
 
-        public OverlayForm(Form formToCover)
+        public OverlayForm(Form formToCover, float opacity)
         {
             InitializeComponent();
 
             this.BackColor = Color.Black;
-            this.Opacity = .85f;
+            this.Opacity = opacity;
             this.FormBorderStyle = FormBorderStyle.None;
             this.ControlBox = false;
             this.TopMost = true;
@@ -93,6 +93,21 @@ namespace Overlays
             else
             {
                 panel.Location = new Point(posX, posY);
+            }
+        }
+
+        public void SetText(string text)
+        {
+            if (lblProgress.InvokeRequired)
+            {
+                lblProgress.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    lblProgress.Text = text;
+                });
+            }
+            else
+            {
+                lblProgress.Text = text;
             }
         }
     }
