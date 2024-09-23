@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,10 +8,12 @@ namespace Overlays
     public partial class OverlayForm : Form
     {
         private bool isActive;
+        private Form _formToCoverRef;
 
         public OverlayForm(Form formToCover, float opacity)
         {
             InitializeComponent();
+            _formToCoverRef = formToCover;
 
             this.BackColor = Color.Black;
             this.Opacity = opacity;
@@ -22,8 +23,8 @@ namespace Overlays
             this.ShowInTaskbar = false;
             this.StartPosition = FormStartPosition.Manual;
             this.AutoScaleMode = AutoScaleMode.None;
-            this.Location = formToCover.PointToScreen(Point.Empty);
-            this.ClientSize = formToCover.ClientSize;
+            this.Location = _formToCoverRef.PointToScreen(Point.Empty);
+            this.ClientSize = _formToCoverRef.ClientSize;
             this.FormClosing += OverlayForm_FormClosing;
 
             var size = this.Width / 9;
@@ -74,11 +75,19 @@ namespace Overlays
                     }
                 }
             });
+
+            _formToCoverRef.Move += WhenFormToCoverMoves;
+        }
+
+        private void WhenFormToCoverMoves(Object sender, EventArgs e)
+        {
+            this.Location = _formToCoverRef.PointToScreen(Point.Empty);
         }
 
         private void OverlayForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             isActive = false;
+            _formToCoverRef.Move -= WhenFormToCoverMoves;
         }
 
         private void SetPanelPosition(Panel panel, int posX, int posY)
