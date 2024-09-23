@@ -19,8 +19,8 @@ namespace Overlays
             this.Opacity = opacity;
             this.FormBorderStyle = FormBorderStyle.None;
             this.ControlBox = false;
-            this.TopMost = true;
             this.ShowInTaskbar = false;
+            this.Owner = formToCover;
             this.StartPosition = FormStartPosition.Manual;
             this.AutoScaleMode = AutoScaleMode.None;
             this.Location = _formToCoverRef.PointToScreen(Point.Empty);
