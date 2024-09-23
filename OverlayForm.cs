@@ -77,6 +77,13 @@ namespace Overlays
             });
 
             _formToCoverRef.Move += WhenFormToCoverMoves;
+            _formToCoverRef.Resize += WhenFormToCoverResizes;
+        }
+
+        private void WhenFormToCoverResizes(object sender, EventArgs e)
+        {
+            this.Location = _formToCoverRef.PointToScreen(Point.Empty);
+            this.ClientSize = _formToCoverRef.ClientSize;
         }
 
         private void WhenFormToCoverMoves(Object sender, EventArgs e)
@@ -88,6 +95,7 @@ namespace Overlays
         {
             isActive = false;
             _formToCoverRef.Move -= WhenFormToCoverMoves;
+            _formToCoverRef.Move -= WhenFormToCoverResizes;
         }
 
         private void SetPanelPosition(Panel panel, int posX, int posY)
