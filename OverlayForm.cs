@@ -10,7 +10,7 @@ namespace Overlays
         private bool isActive;
         private Form _formToCoverRef;
 
-        public OverlayForm(Form formToCover, float opacity)
+        public OverlayForm(Form formToCover, float opacity = .5f)
         {
             InitializeComponent();
             _formToCoverRef = formToCover;
