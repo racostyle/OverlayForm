@@ -41,6 +41,6 @@ public void ShowOverlay(Form mainForm)
     // Set text
     overlay.SetText("Operating...");
     // Simulate some work
-    Task.Delay(5000).ContinueWith(_ => overlay.Close());
+    Task.Delay(3000).ContinueWith(_ => overlay.Close());
 }
 ```
